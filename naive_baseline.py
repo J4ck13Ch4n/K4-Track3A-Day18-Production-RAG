@@ -38,11 +38,11 @@ def main():
     test_set = load_test_set()
     questions, answers, all_contexts, ground_truths = [], [], [], []
 
-    from config import OPENAI_API_KEY
+    from config import OPENAI_API_KEY, OPENAI_BASE_URL
     llm_client = None
     if OPENAI_API_KEY:
         from openai import OpenAI
-        llm_client = OpenAI()
+        llm_client = OpenAI(api_key=OPENAI_API_KEY, base_url=OPENAI_BASE_URL) if OPENAI_BASE_URL else OpenAI(api_key=OPENAI_API_KEY)
 
     for i, item in enumerate(test_set):
         results = search.search(item["question"], top_k=3, collection=NAIVE_COLLECTION)

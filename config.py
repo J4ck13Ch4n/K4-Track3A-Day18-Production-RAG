@@ -6,7 +6,8 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # --- API Keys ---
-OPENAI_API_KEY = os.getenv("OPENAI_API_KEY", "")
+OPENAI_API_KEY = os.getenv("OPENAI_API_KEY") or os.getenv("CUSTOM_API_KEY", "")
+OPENAI_BASE_URL = os.getenv("OPENAI_BASE_URL") or os.getenv("CUSTOM_BASE_URL", None)
 
 # --- Qdrant ---
 QDRANT_HOST = "localhost"
